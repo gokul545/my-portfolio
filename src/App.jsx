@@ -41,6 +41,7 @@ const PERSONAL = {
   phone: "+91 7548860069",
   linkedinLabel: "linkedin.com/in/Gokul-Naath-KR",
   linkedinUrl: "https://linkedin.com/in/Gokul-Naath-KR",
+  githubUrl: "https://github.com/gokul545",
   summary:
     "Aspiring Software Engineer with knowledge of Java, Spring Boot, AWS, and DevOps practices. Passionate about building efficient, scalable applications and continuously improving technical skills. Looking for opportunities to apply my knowledge in a collaborative environment.",
 };
@@ -110,9 +111,25 @@ const EDUCATION = [
 ];
 
 const CERTIFICATIONS = [
-  { name: "Cisco Certified Network Associate (CCNA)", issuer: "Networking Fundamentals" },
-  { name: "Web Development", issuer: "Elewayte" },
-  { name: "Basics of Java Programming", issuer: "CSRI, Puducherry" },
+  { name: "Web Development", issuer: "Elewayte", date: "Nov 2024" },
+  { name: "Java Basics – Programming Course (Hands-On)", issuer: "SkillRack", date: "Aug 2025" },
+  { name: "Introduction to Artificial Intelligence", issuer: "Infosys Springboard", date: "Jan 2026" },
+  { name: "Oracle Java Foundations: Training and Assessment", issuer: "Oracle", date: "2026" },
+  { name: "Introduction to DevOps", issuer: "Microsoft", date: "Aug 2026" },
+  { name: "Learn Apache Maven Course", issuer: "Simplilearn SkillUp", date: "Aug 2026" },
+];
+
+const WORKSHOPS = [
+  { name: "Machine Learning Workshop", issuer: "Top Engineers India", date: "Aug 2025" },
+  { name: "Python Programming Workshop", issuer: "Top Engineers India × Mechanica 2024", date: "Dec 2024" },
+  { name: "Data Structures and Algorithms Masterclass", issuer: "Ocean Academy", date: "Jun 2026" },
+  { name: "Java with AI Masterclass", issuer: "Ocean Academy", date: "Aug 2026" },
+];
+
+const TECHNICAL_EVENTS = [
+  { name: "Cybersentinel 2K25 – Paper Presentation", detail: "AI Powered Self Charging Auto Rickshaw", organizer: "Vel Tech High Tech", date: "Sep 2025" },
+  { name: "GENESIS'25 – Paper Presentation", detail: "Technical Symposium Participation", organizer: "SRM Institute of Science and Technology", date: "Sep 2025" },
+  { name: "NEURATHON'26 – Innovation Hackathon", detail: "30-hour Non-Stop Innovation Hackathon", organizer: "New Prince Shri Bhavani College of Engineering", date: "Feb 2026" },
 ];
 
 
@@ -428,8 +445,9 @@ function Hero({ onNavigate, onToast }) {
           </div>
 
           <div className="hero-social">
-            <a href={PERSONAL.linkedinUrl} target="_blank" rel="noreferrer" className="icon-link" aria-label="LinkedIn"><span className="linkedin-mark">in</span></a>
-            <button onClick={copyEmail} className="icon-link" aria-label="Copy email"><Mail size={18} /></button>
+            <a href={PERSONAL.linkedinUrl} target="_blank" rel="noopener noreferrer" className="icon-link" aria-label="LinkedIn" title="LinkedIn"><span className="linkedin-mark">in</span></a>
+            <a href={PERSONAL.githubUrl} target="_blank" rel="noopener noreferrer" className="icon-link" aria-label="GitHub" title="GitHub"><span className="github-mark">GH</span></a>
+            <button onClick={copyEmail} className="icon-link" aria-label="Copy email" title="Copy email"><Mail size={18} /></button>
             <a href={`tel:${PERSONAL.phone.replace(/\s/g, "")}`} className="icon-link" aria-label="Phone"><Phone size={18} /></a>
             
           </div>
@@ -568,8 +586,63 @@ function Education() {
   return <section id="education" className="section"><SectionHeading index="05" label="Education" title="Education" /><div className="edu-timeline">{EDUCATION.map((e, i) => <Reveal key={e.school} delay={i * 100} className="edu-item"><div className="edu-marker"><span className="edu-dot"><GraduationCap size={14} /></span></div><div className="edu-card"><div className="edu-card-head"><h3>{e.school}</h3><span className="edu-period">{e.period}</span></div><p className="edu-degree">{e.degree}</p><span className="edu-detail">{e.detail}</span></div></Reveal>)}</div></section>;
 }
 
+function CredentialCard({ item, type }) {
+  return (
+    <Reveal className="credential-card">
+      <div className="credential-body">
+        <span className="credential-type">{type}</span>
+        <h3>{item.name}</h3>
+        {item.detail && <p className="credential-detail">{item.detail}</p>}
+        <div className="credential-meta">
+          <span>{item.issuer || item.organizer}</span>
+          <span>{item.date}</span>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
 function Certifications() {
-  return <section id="certifications" className="section section-tint"><SectionHeading index="06" label="Certifications" title="Certifications" /><Reveal className="cert-list">{CERTIFICATIONS.map((c) => <div className="cert-row" key={c.name}><span className="cert-icon"><Award size={17} strokeWidth={1.75} /></span><span className="cert-name">{c.name}</span><span className="cert-issuer">{c.issuer}</span></div>)}</Reveal></section>;
+  return (
+    <section id="certifications" className="section section-tint">
+      <SectionHeading
+        index="06"
+        label="Credentials"
+        title="Certifications, Workshops & Events"
+        lead="A curated collection of course completions, technical workshops, masterclasses, paper presentations and hackathon participation."
+      />
+
+      <div className="credential-group">
+        <div className="credential-group-heading">
+          <div><Award size={18} /><h3>Certifications</h3></div>
+          <span>{CERTIFICATIONS.length} credentials</span>
+        </div>
+        <div className="credential-grid">
+          {CERTIFICATIONS.map((item) => <CredentialCard key={item.name} item={item} type="Certification" />)}
+        </div>
+      </div>
+
+      <div className="credential-group">
+        <div className="credential-group-heading">
+          <div><Sparkles size={18} /><h3>Workshops & Masterclasses</h3></div>
+          <span>{WORKSHOPS.length} participations</span>
+        </div>
+        <div className="credential-grid">
+          {WORKSHOPS.map((item) => <CredentialCard key={item.name} item={item} type="Workshop" />)}
+        </div>
+      </div>
+
+      <div className="credential-group">
+        <div className="credential-group-heading">
+          <div><Briefcase size={18} /><h3>Technical Events & Presentations</h3></div>
+          <span>{TECHNICAL_EVENTS.length} activities</span>
+        </div>
+        <div className="credential-grid">
+          {TECHNICAL_EVENTS.map((item) => <CredentialCard key={item.name} item={item} type="Event / Presentation" />)}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function Contact({ onToast }) {
@@ -583,7 +656,66 @@ function Contact({ onToast }) {
     e.preventDefault();
     const subject = encodeURIComponent(`Portfolio enquiry from ${form.name || "a visitor"}`);
     const body = encodeURIComponent(`${form.message}\n\n— ${form.name || ""}${form.email ? ` (${form.email})` : ""}`);
-    window.location.href = `mailto:${PERSONAL.email}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${PERSONAL.email}?subject=${subject}&body=${body}
+.github-mark{  display:inline-flex !important;  align-items:center !important;  justify-content:center !important;  font-family:Inter,Arial,sans-serif !important;  font-size:.78rem !important;  font-weight:800 !important;  letter-spacing:-.04em !important;  color:var(--accent) !important;}
+.github-mark-small{font-size:.65rem}
+
+
+/* GitHub contact card alignment */
+.github-contact-card{
+  display:flex !important;
+  align-items:center !important;
+  gap:1.1rem !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  text-decoration:none !important;
+}
+.github-contact-card .contact-icon{
+  flex:0 0 48px !important;
+  width:48px !important;
+  height:48px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.github-contact-card .contact-content{
+  flex:1 !important;
+  min-width:0 !important;
+}
+.github-contact-card .contact-label{
+  display:block !important;
+  margin-bottom:.35rem !important;
+}
+.github-contact-card .contact-value{
+  display:block !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+.github-contact-card .contact-arrow{
+  flex:0 0 auto !important;
+}
+.github-contact-card .github-mark{
+  font-size:.82rem !important;
+  font-weight:800 !important;
+  letter-spacing:-.04em !important;
+}
+@media(max-width:620px){
+  .github-contact-card .contact-value{
+    font-size:.86rem !important;
+  }
+}
+
+
+.github-logo{
+  width:22px !important;
+  height:22px !important;
+  display:block !important;
+  fill:currentColor !important;
+  color:var(--accent) !important;
+}
+
+`;
     onToast("Your email app is opening");
   };
   return <section id="contact" className="section"><SectionHeading index="07" label="Contact" title="Let's Connect" lead="Open to Software Engineer opportunities — reach out any time." /><div className="contact-grid">
@@ -591,6 +723,22 @@ function Contact({ onToast }) {
       <button onClick={copyEmail} className="contact-info-row contact-info-button"><span className="contact-info-icon"><Mail size={17} /></span><div><span className="contact-info-label">Email · click to copy</span><span className="contact-info-value">{PERSONAL.email}</span></div><Copy size={14} className="contact-info-ext" /></button>
       <a href={`tel:${PERSONAL.phone.replace(/\s/g, "")}`} className="contact-info-row"><span className="contact-info-icon"><Phone size={17} /></span><div><span className="contact-info-label">Phone</span><span className="contact-info-value">{PERSONAL.phone}</span></div></a>
       <a href={PERSONAL.linkedinUrl} target="_blank" rel="noreferrer" className="contact-info-row"><span className="contact-info-icon"><span className="linkedin-mark">in</span></span><div><span className="contact-info-label">LinkedIn</span><span className="contact-info-value">{PERSONAL.linkedinLabel}</span></div><ExternalLink size={13} className="contact-info-ext" /></a>
+            <a
+        href={PERSONAL.githubUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="contact-info-row"
+        aria-label="Open GitHub profile"
+      >
+        <span className="contact-info-icon"><svg className="github-logo" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M12 .7a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.05c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.6-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.82.57A12 12 0 0 0 12 .7Z"/>
+</svg></span>
+        <div>
+          <span className="contact-info-label">GitHub</span>
+          <span className="contact-info-value">github.com/gokul545</span>
+        </div>
+        <ExternalLink size={13} className="contact-info-ext" />
+      </a>
     </Reveal>
     <Reveal delay={100} className="contact-form-wrap"><form className="contact-form" onSubmit={handleSubmit}><div className="form-row"><label>Name<input type="text" value={form.name} onChange={update("name")} placeholder="Your name" required /></label><label>Email<input type="email" value={form.email} onChange={update("email")} placeholder="you@example.com" required /></label></div><label>Message<textarea rows={4} value={form.message} onChange={update("message")} placeholder="Tell me about the opportunity..." required /></label><button type="submit" className="btn btn-primary form-submit">Send Message <Send size={15} /></button></form></Reveal>
   </div></section>;
@@ -1049,6 +1197,26 @@ html, body, #root {
 .cert-row {
   min-width: 0;
 }
+
+
+/* ---------- Certifications / workshops / technical events ---------- */
+.credential-group{margin-top:2.7rem}
+.credential-group:first-of-type{margin-top:0}
+.credential-group-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.credential-group-heading>div{display:flex;align-items:center;gap:.55rem;color:var(--accent)}
+.credential-group-heading h3{margin:0;color:var(--ink);font-size:1.1rem}
+.credential-group-heading>span{font-size:.72rem;color:var(--ink-faint)}
+.credential-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.credential-card{min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.credential-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--accent)}
+.credential-body{padding:1.25rem 1.2rem 1.3rem;min-height:150px;display:flex;flex-direction:column}
+.credential-type{display:inline-block;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--accent);margin-bottom:.55rem}
+.credential-body h3{font-size:1rem;line-height:1.4;margin:0 0 .55rem;color:var(--ink)}
+.credential-detail{font-size:.78rem;line-height:1.5;color:var(--ink-muted);margin:0 0 .7rem}
+.credential-meta{display:flex;justify-content:space-between;gap:.7rem;font-size:.72rem;color:var(--ink-faint);margin-top:auto;padding-top:.75rem;border-top:1px solid var(--border-soft)}
+.credential-meta span:first-child{font-weight:600;color:var(--ink-muted)}
+@media(max-width:980px){.credential-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.credential-grid{grid-template-columns:1fr}.credential-group-heading{align-items:flex-start;flex-direction:column;gap:.35rem}}
 
 /* ---------- Contact ---------- */
 .contact-grid {
