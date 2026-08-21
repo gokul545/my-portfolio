@@ -7,7 +7,6 @@ import {
   ArrowUp,
   ArrowRight,
   ExternalLink,
-  Download,
   GraduationCap,
   Award,
   Briefcase,
@@ -39,8 +38,8 @@ const PERSONAL = {
   label: "Aspiring Software Engineer",
   email: "Gokulnaathgokul07@gmail.com",
   phone: "+91 7548860069",
-  linkedinLabel: "linkedin.com/in/Gokul-Naath-KR",
-  linkedinUrl: "https://linkedin.com/in/Gokul-Naath-KR",
+  linkedinLabel: "linkedin.com/in/gokul-naath-kr-7159b3284/",
+  linkedinUrl: "https://www.linkedin.com/in/gokul-naath-kr-7159b3284/",
   githubUrl: "https://github.com/gokul545",
   summary:
     "Aspiring Software Engineer with knowledge of Java, Spring Boot, AWS, and DevOps practices. Passionate about building efficient, scalable applications and continuously improving technical skills. Looking for opportunities to apply my knowledge in a collaborative environment.",
@@ -138,6 +137,39 @@ const TECHNICAL_EVENTS = [
 /* ------------------------------------------------------------------ */
 
 const PROJECTS = [
+  {
+    id: "ai-civic",
+    category: "AI / ML",
+    year: "2026",
+    name: "AI-Powered Civic Issue Prediction & Resolution Platform",
+    role: "AI + Full-Stack Developer",
+    description:
+      "An AI-powered civic platform that helps citizens report public issues and uses intelligent classification, priority prediction, duplicate detection and analytics to improve issue resolution.",
+    features: [
+      "Citizen complaint submission and status tracking.",
+      "AI-based complaint classification and priority prediction.",
+      "Duplicate complaint detection and civic analytics.",
+      "GIS-based complaint heatmap and admin dashboard.",
+    ],
+    stack: ["React", "Spring Boot", "Java 21", "Python", "MySQL", "AWS"],
+    githubUrl: "https://github.com/gokul545/AI-Civic-Issue-Prediction-Platform",
+  },
+  {
+    id: "sri-balaji-stores",
+    category: "Desktop",
+    year: "2026",
+    name: "Sri Balaji Stores – Offline POS & Inventory",
+    role: "Java Developer",
+    description:
+      "An offline desktop POS and inventory management application designed to simplify product management, billing, sales tracking and daily shop operations.",
+    features: [
+      "Product and inventory management.",
+      "Offline billing and POS operations.",
+      "Sales management and business records.",
+    ],
+    stack: ["Java", "MySQL", "Maven", "Desktop"],
+    githubUrl: "https://github.com/gokul545/Sri-Balaji-Stores-Offline-POS-Inventory-Desktop-Application",
+  },
   {
     ...PROJECT,
     id: "smart-plant",
@@ -353,7 +385,7 @@ function Navbar({ active, onNavigate, theme, setTheme }) {
     <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
       <div className="navbar-inner">
         <button className="brand" onClick={() => handleClick("home")}>
-          Gokulnaath <span>K R</span>
+          Gokulnaath <span className="brand-initials">K R</span>
         </button>
 
         <nav className="nav-links" aria-label="Primary navigation">
@@ -397,9 +429,6 @@ function Navbar({ active, onNavigate, theme, setTheme }) {
           <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary mobile-resume-btn">
             <ExternalLink size={15} /> View Resume
           </a>
-          <a href="/resume.pdf" download="Gokulnaath-KR-Resume.pdf" className="btn btn-outline mobile-resume-btn">
-            <Download size={15} /> Download Resume
-          </a>
         </div>
       </div>
     </header>
@@ -441,12 +470,15 @@ function Hero({ onNavigate, onToast }) {
           <div className="hero-actions">
             <button className="btn btn-primary" onClick={() => onNavigate("projects")}>View My Work <ArrowRight size={16} /></button>
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline"><ExternalLink size={16} /> View Resume</a>
-            <a href="/resume.pdf" download="Gokulnaath-KR-Resume.pdf" className="btn btn-outline"><Download size={16} /> Download</a>
           </div>
 
           <div className="hero-social">
-            <a href={PERSONAL.linkedinUrl} target="_blank" rel="noopener noreferrer" className="icon-link" aria-label="LinkedIn" title="LinkedIn"><span className="linkedin-mark">in</span></a>
-            <a href={PERSONAL.githubUrl} target="_blank" rel="noopener noreferrer" className="icon-link" aria-label="GitHub" title="GitHub"><span className="github-mark">GH</span></a>
+            <a href={PERSONAL.linkedinUrl} target="_blank" rel="noopener noreferrer" className="icon-link" aria-label="LinkedIn" title="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V8.99h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM3.56 20.45h3.57V8.99H3.56v11.46zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/>
+              </svg>
+            </a>
+            <a href="https://github.com/gokul545" target="_blank" rel="noopener noreferrer" className="icon-link" aria-label="GitHub" title="GitHub"><svg className="github-svg" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.17c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.28-1.7-1.28-1.7-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .96-.31 3.15 1.18A10.9 10.9 0 0 1 12 6.31c.97 0 1.94.13 2.85.38 2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.77.11 3.06.73.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.07.78 2.16v3.2c0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
             <button onClick={copyEmail} className="icon-link" aria-label="Copy email" title="Copy email"><Mail size={18} /></button>
             <a href={`tel:${PERSONAL.phone.replace(/\s/g, "")}`} className="icon-link" aria-label="Phone"><Phone size={18} /></a>
             
@@ -575,11 +607,87 @@ function ProjectModal({ project, onClose }) {
 function Projects({ onOpen }) {
   const [filter, setFilter] = useState("All");
   const categories = ["All", ...new Set(PROJECTS.map((p) => p.category))];
-  const shown = filter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
-  return <section id="projects" className="section section-tint"><SectionHeading index="04" label="Projects" title="Featured Project" lead="Hands-on work applying engineering skills beyond the classroom." />
-    <div className="project-toolbar"><div className="filter-row">{categories.map((c) => <button key={c} className={`filter-btn ${filter === c ? "filter-active" : ""}`} onClick={() => setFilter(c)}>{c}</button>)}</div><span className="project-count">{shown.length} project{shown.length !== 1 ? "s" : ""}</span></div>
-    <div className="project-grid">{shown.map((project) => <Reveal key={project.id} className="project-showcase clickable" onClick={() => onOpen(project)}><div className="project-visual"><ProjectIllustration /></div><div className="project-content"><span className="project-role"><Leaf size={14} />{project.role}</span><h3 className="project-name">{project.name}</h3><p className="project-desc">{project.description}</p><div className="project-stack">{project.stack.map((s) => <span key={s} className="project-chip"><Code2 size={13} />{s}</span>)}</div><button className="project-open-btn" onClick={(e) => { e.stopPropagation(); onOpen(project); }}>View details <ArrowRight size={15} /></button></div></Reveal>)}</div>
-  </section>;
+  const shown =
+    filter === "All"
+      ? PROJECTS
+      : PROJECTS.filter((p) => p.category === filter);
+
+  return (
+    <section id="projects" className="section section-tint projects-modern">
+      <SectionHeading
+        index="04"
+        label="Projects"
+        title="Selected Work"
+        lead="A selection of projects where I apply software engineering, AI, DevOps and IoT skills to practical problems."
+      />
+
+      <div className="project-toolbar">
+        <div className="filter-row">
+          {categories.map((c) => (
+            <button
+              key={c}
+              className={`filter-btn ${filter === c ? "filter-active" : ""}`}
+              onClick={() => setFilter(c)}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+        <span className="project-count">
+          {shown.length} project{shown.length !== 1 ? "s" : ""}
+        </span>
+      </div>
+
+      <div className="project-grid">
+        {shown.map((project) => (
+          <Reveal key={project.id} className="project-showcase">
+            <div className="project-visual">
+              <ProjectIllustration />
+            </div>
+
+            <div className="project-content">
+              <span className="project-role">
+                <Leaf size={14} />
+                {project.role}
+              </span>
+
+              <h3 className="project-name">{project.name}</h3>
+              <p className="project-desc">{project.description}</p>
+
+              <div className="project-stack">
+                {project.stack.map((s) => (
+                  <span key={s} className="project-chip">
+                    <Code2 size={13} />
+                    {s}
+                  </span>
+                ))}
+              </div>
+
+              <div className="project-actions">
+                <button
+                  className="project-open-btn"
+                  onClick={() => onOpen(project)}
+                >
+                  View details <ArrowRight size={15} />
+                </button>
+
+                {project.githubUrl && (
+                  <a
+                    className="project-github-btn"
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg className="github-svg project-github-logo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.17c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.28-1.7-1.28-1.7-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .96-.31 3.15 1.18A10.9 10.9 0 0 1 12 6.31c.97 0 1.94.13 2.85.38 2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.77.11 3.06.73.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.07.78 2.16v3.2c0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg> GitHub <ExternalLink size={14} />
+                  </a>
+                )}
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 function Education() {
@@ -1380,4 +1488,166 @@ html, body, #root {
   }
 }
 
+
+/* ---------- FINAL PROJECT + HEADER UPDATE ---------- */
+
+.brand {
+  gap: .5rem !important;
+}
+
+.brand-initials {
+  display: inline-block !important;
+  margin-left: .15rem !important;
+  color: var(--accent) !important;
+  white-space: nowrap !important;
+}
+
+.projects-modern .project-toolbar {
+  margin-bottom: 1.25rem;
+}
+
+.projects-modern .project-showcase {
+  display: grid;
+  grid-template-columns: minmax(280px, .82fr) minmax(0, 1.18fr);
+  min-height: 410px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.projects-modern .project-showcase:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.projects-modern .project-visual {
+  min-height: 100%;
+  background: var(--accent-tint);
+  padding: 2.4rem;
+}
+
+.projects-modern .project-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 3.2rem;
+}
+
+.projects-modern .project-name {
+  max-width: 720px;
+  font-size: clamp(1.65rem, 2.5vw, 2.35rem);
+  line-height: 1.18;
+}
+
+.projects-modern .project-desc {
+  max-width: 700px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.projects-modern .project-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 1.15rem;
+}
+
+.projects-modern .project-github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: .86rem;
+  font-weight: 700;
+  transition: .2s;
+}
+
+.projects-modern .project-github-btn:hover {
+  color: var(--accent);
+  transform: translateX(2px);
+}
+
+@media (max-width: 859px) {
+  .projects-modern .project-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-modern .project-visual {
+    min-height: 280px;
+  }
+
+  .projects-modern .project-content {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .projects-modern .project-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .projects-modern .project-showcase {
+    min-height: auto;
+  }
+
+  .projects-modern .project-visual {
+    min-height: 230px;
+    padding: 1.5rem;
+  }
+
+  .projects-modern .project-content {
+    padding: 1.5rem;
+  }
+
+  .projects-modern .project-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .75rem;
+  }
+}
+
+
+
+
+/* ---------- PROJECT ACTION ALIGNMENT ---------- */
+.projects-modern .project-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:1.25rem;
+  width:100%;
+  margin-top:1.25rem;
+}
+.projects-modern .project-open-btn,
+.projects-modern .project-github-btn{
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.45rem;
+  white-space:nowrap;
+}
+.projects-modern .project-github-btn{
+  padding-left:1.25rem;
+  border-left:1px solid var(--border);
+  color:var(--ink);
+  text-decoration:none;
+  font-weight:700;
+}
+.projects-modern .project-github-btn:hover{
+  color:var(--accent);
+  transform:translateX(2px);
+}
+@media(max-width:859px){
+  .projects-modern .project-actions{justify-content:flex-start}
+}
+@media(max-width:620px){
+  .projects-modern .project-actions{justify-content:flex-start;flex-wrap:wrap}
+  .projects-modern .project-github-btn{border-left:0;padding-left:0}
+}
+.github-svg{flex:0 0 auto;display:block}
 `;
